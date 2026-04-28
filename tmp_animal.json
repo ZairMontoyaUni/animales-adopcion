@@ -1,0 +1,27 @@
+﻿{
+    "id":  "2bbf46b6-842a-454b-97de-9bb3f72b3266",
+    "nombre":  "Luna",
+    "especie":  "perro",
+    "edad":  18,
+    "descripcion":  "Labrador amigable y juguetona",
+    "estado":  "disponible",
+    "imagen":  null,
+    "contacto":  "refugio@ejemplo.com",
+    "location":  {
+                     "id":  "92c4a443-3df6-45a0-bc6d-80bc5a2a9417",
+                     "name":  "Refugio Central",
+                     "city":  "Bogota",
+                     "address":  "Calle Falsa 123",
+                     "phone":  "+5711111111",
+                     "createdAt":  "2026-04-28T12:43:36.837Z"
+                 },
+    "registeredBy":  {
+                         "id":  "73960d96-7ff0-461a-8993-52f6e1aa31cb",
+                         "name":  "Test User 2",
+                         "email":  "user2@example.com",
+                         "phone":  "+57123456790",
+                         "createdAt":  "2026-04-28T12:43:19.064Z"
+                     },
+    "createdAt":  "2026-04-28T12:43:56.160Z",
+    "updatedAt":  "2026-04-28T12:43:56.160Z"
+}
