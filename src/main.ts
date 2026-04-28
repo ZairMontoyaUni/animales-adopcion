@@ -8,6 +8,11 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  app.use((req, res, next) => {
+    logger.log(`${req.method} ${req.originalUrl ?? req.url}`);
+    next();
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist:            true,
