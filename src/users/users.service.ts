@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, Logger, 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Animal } from 'src/animals/entities/animal.entity';
+import { Animal } from '../animals/entities/animal.entity';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 
