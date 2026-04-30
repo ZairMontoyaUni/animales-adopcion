@@ -6,7 +6,7 @@ import { User }     from '../users/entities/user.entity';
 import { Animal }   from '../animals/entities/animal.entity';
 import { SeederService } from './seeder.service';
 import { SeederController } from './seeder.controller';
-
+import { AdoptionRequest } from '../adoption-requests/entities/adoption-request.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -20,13 +20,16 @@ import { SeederController } from './seeder.controller';
         username:    cfg.getOrThrow('DB_USER'),
         password:    cfg.getOrThrow('DB_PASSWORD'),
         database:    cfg.getOrThrow('DB_NAME'),
-        entities:    [Location, User, Animal],  // solo entidades de la guía anterior
+        entities:    [Location, User, Animal, AdoptionRequest],
         synchronize: false,
       }),
     }),
-    TypeOrmModule.forFeature([Location, User, Animal]),
+    TypeOrmModule.forFeature([Location, User, Animal, AdoptionRequest]),
   ],
   controllers: [SeederController],
   providers: [SeederService],
 })
 export class SeederModule {}
+
+
+
