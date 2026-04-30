@@ -6,6 +6,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/s
 import { AnimalsService } from './animals.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
 import { UpdateAnimalDto } from './dto/update-animal.dto';
+import { PaginationDto } from './dto/pagination.dto';
 
 @ApiTags('animals')
 @Controller('animals')
@@ -26,8 +27,8 @@ export class AnimalsController {
   @Get()
   @ApiOperation({ summary: 'Obtener todos los animales' })
   @ApiResponse({ status: 200, description: 'Lista de animales obtenida' })
-  findAll() {
-    return this.animalsService.findAll();
+  findAll(@Query() pagination: PaginationDto) {
+    return this.animalsService.findAll(pagination);
   }
 
   @Get(':id')
@@ -60,4 +61,8 @@ export class AnimalsController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.animalsService.remove(id);
   }
+}
+
+function Query(): (target: AnimalsController, propertyKey: "findAll", parameterIndex: 0) => void {
+  throw new Error('Function not implemented.');
 }
