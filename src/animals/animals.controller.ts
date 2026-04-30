@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, Query } from '@nestjs/common';
-import { FilterAnimalDto } from './dto/filter-animal.dto';
+import { QueryAnimalsDto } from './dto/query-animals.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { AnimalsService } from './animals.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
@@ -24,8 +24,8 @@ export class AnimalsController {
   @Get()
   @ApiOperation({ summary: 'Obtener todos los animales' })
   @ApiResponse({ status: 200, description: 'Lista de animales obtenida' })
-  findAll(@Query() filters: FilterAnimalDto) {
-    return this.animalsService.findAll(filters);
+  findAll(@Query() query: QueryAnimalsDto) {
+    return this.animalsService.findAll(query);
   }
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un animal por ID' })
