@@ -5,13 +5,18 @@ import { Location }      from '../locations/entities/location.entity';
 import { User }          from '../users/entities/user.entity';
 import { AnimalsService }    from './animals.service';
 import { AnimalsController } from './animals.controller';
-
+import { MulterModule }  from '@nestjs/platform-express';
+import { memoryStorage }  from 'multer';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 @Module({
   imports: [
     // Registra Animal + las entities de las FKs
+    MulterModule.register({ storage: memoryStorage() }),
     TypeOrmModule.forFeature([
       Animal, Location, User,
+
     ]),
+    CloudinaryModule,
   ],
   controllers: [AnimalsController],
   providers:   [AnimalsService],

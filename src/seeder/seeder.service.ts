@@ -114,7 +114,7 @@ export class SeederService {
         status: 'rechazada',
         message: 'Apartamento pequeño pero mucho amor' },
     ]);
-    this.logger.log(`  ✓ ${requests.length} solicitudes`)
+    this.logger.log(`  ✓ ${requests.length} solicitudes`);
   }
 
   async clearAndSeed() {

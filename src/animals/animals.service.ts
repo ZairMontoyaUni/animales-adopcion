@@ -10,6 +10,7 @@ import { User }             from '../users/entities/user.entity';
 import { CreateAnimalDto }  from './dto/create-animal.dto';
 import { UpdateAnimalDto }  from './dto/update-animal.dto';
 import { QueryAnimalsDto } from './dto/query-animals.dto';
+import { CloudinaryService }              from '../cloudinary/cloudinary.service';
 @Injectable()
 export class AnimalsService {
 
@@ -22,6 +23,7 @@ export class AnimalsService {
     private readonly locationRepo: Repository<Location>,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
 
   async create(dto: CreateAnimalDto) {
@@ -95,5 +97,23 @@ export class AnimalsService {
       throw new BadRequestException(`Valor duplicado: ${err.detail}`);
     this.logger.error(err);
     throw new InternalServerErrorException('Error inesperado — revisa los logs');
+  }
+
+
+  async uploadImagen(id: string, file: Express.Multer.File): Promise<Animal> {
+    // 1. Verificar que el animal existe (lanza 404 si no)
+    await this.findOne(id);
+
+    // 2. Subir el buffer a Cloudinary y recibir la URL
+    const url = await this.cloudinaryService.uploadBuffer(
+      file.buffer,
+      'animales-adopcion',  // carpeta en tu cuenta Cloudinary
+    );
+
+    // 3. Guardar la URL en la columna "imagen"
+    await this.animalRepo.update(id, { imagen: url });
+
+    // 4. Retornar el animal actualizado
+    return this.findOne(id);
   }
 }

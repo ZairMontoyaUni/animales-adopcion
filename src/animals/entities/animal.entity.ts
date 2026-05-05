@@ -18,7 +18,6 @@ export class Animal {
   @Column({ default: 'disponible' }) estado!:  string;
   @Column({ nullable: true }) imagen!:      string;
   @Column()                    contacto!:    string;    // email del refugio
-
   // ManyToOne → Location  (un animal pertenece a un refugio)
   @ManyToOne(() => Location, (loc) => loc.animals, { eager: true, nullable: true })
   @JoinColumn({ name: 'locationId' })

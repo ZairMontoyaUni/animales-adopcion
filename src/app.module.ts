@@ -2,6 +2,7 @@ import { Module }              from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SeederModule } from './seeder/seeder.module';
 import { AdoptionRequestsModule } from './adoption-requests/adoption-requests.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { TypeOrmModule }       from '@nestjs/typeorm';
 import { AnimalsModule }       from './animals/animals.module';
 import { LocationsModule }     from './locations/locations.module';
@@ -31,6 +32,7 @@ import { UsersModule }         from './users/users.module';
     UsersModule,
     SeederModule,
     AdoptionRequestsModule,
+    CloudinaryModule,
   ],
 })
 export class AppModule {}
